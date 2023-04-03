@@ -9,6 +9,6 @@ export default defineConfig({
     glsl({
       exclude: 'node_modules/**',
       // change this to match the location of your shader files
-      include: ['src/**/**/*.glsl', '/\.glsl$/' ],
+      include: ['src/**/**/*.glsl', '/\.glsl$/', 'src/**/*.glsl' ],
     })],
 })

@@ -6,6 +6,7 @@
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,6 +17,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "glsl.d.ts"],
+  "include": ["src", "src/glsl.d.ts", "src/shaders.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
