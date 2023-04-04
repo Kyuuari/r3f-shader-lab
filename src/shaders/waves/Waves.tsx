@@ -11,7 +11,7 @@ type Props = {};
 const Waves = (props: Props) => {
   const materialRef = useRef<Mesh>(null!);
   const controls = useControls("Waves", {
-    colorA: "#d5369b",
+    colorA: "#ffffff",
     colorB: "#f8b7b7",
   });
 

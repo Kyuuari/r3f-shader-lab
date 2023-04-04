@@ -5,18 +5,20 @@ import React, { Suspense, useState } from "react";
 import Portal from "../shaders/portal/Portal";
 import Waves from "../shaders/waves/Waves";
 import { useFrame, useThree } from "@react-three/fiber";
+import Blob from "../shaders/Blob/Blob";
+import Gradient from "../shaders/gradient/Gradient";
 
 type Props = {};
 
 const Experience = (props: Props) => {
-  const [component, setComponent] = useState("Portal");
+  const [component, setComponent] = useState("Gradient");
   const gl = useThree((state) => state.gl);
 
   // Use Leva to create a control to switch between components
   const generalControls = useControls("General", {
     component: {
       value: component,
-      options: ["Portal", "Waves"],
+      options: ["Portal", "Waves", "Blob", "Gradient"],
       onChange: (value) => {
         setComponent(value);
       },
@@ -78,6 +80,8 @@ const Experience = (props: Props) => {
       <>
         {component === "Portal" ? <Portal /> : null}
         {component === "Waves" ? <Waves /> : null}
+        {component === "Blob" ? <Blob /> : null}
+        {component === "Gradient" ? <Gradient /> : null}
       </>
     </>
   );
