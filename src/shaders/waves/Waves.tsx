@@ -3,14 +3,14 @@ import fragmentShader from "./fragment.glsl";
 import vertexShader from "./vertex.glsl";
 import { Mesh, ShaderMaterial } from "three";
 import { useControls } from "leva";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 type Props = {};
 
 const Waves = (props: Props) => {
   const materialRef = useRef<Mesh>(null!);
-  const controls = useControls({
+  const controls = useControls("Waves", {
     colorA: "#d5369b",
     colorB: "#f8b7b7",
   });

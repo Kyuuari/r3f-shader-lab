@@ -11,9 +11,9 @@ type Props = {};
 
 const Portal = (props: Props) => {
   const materialRef = useRef<ShaderMaterial>(null!);
-  const controls = useControls({
-    colorStart: "#d5369b",
-    colorEnd: "#f8b7b7",
+  const controls = useControls("Portal", {
+    colorStart: "#6ca7ff",
+    colorEnd: "#aebcff",
   });
 
   const uniforms = useMemo(
