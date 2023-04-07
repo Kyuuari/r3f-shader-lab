@@ -5,7 +5,7 @@ import React, { Suspense, useRef, useState } from "react";
 import Portal from "../shaders/portal/Portal";
 import Waves from "../shaders/waves/Waves";
 import { useFrame, useThree } from "@react-three/fiber";
-import Blob from "../shaders/blob/Blob";
+// import Blob from "../shaders/blob/Blob";
 import Gradient from "../shaders/gradient/Gradient";
 import Particles from "../shaders/particles/Particles";
 import LavaLamp from "../shaders/lavalamp/LavaLamp";
@@ -13,7 +13,7 @@ import LavaLamp from "../shaders/lavalamp/LavaLamp";
 type Props = {};
 
 const Experience = (props: Props) => {
-  const [component, setComponent] = useState("Gradient");
+  const [component, setComponent] = useState("Gr");
   const gl = useThree((state) => state.gl);
 
   // Use Leva to create a control to switch between components
@@ -93,7 +93,7 @@ const Experience = (props: Props) => {
       <>
         {component === "Portal" ? <Portal /> : null}
         {component === "Waves" ? <Waves /> : null}
-        {component === "Blob" ? <Blob /> : null}
+        {/* {component === "Blob" ? <Blob /> : null} */}
         {component === "Gradient" ? <Gradient /> : null}
         {component === "LavaLamp" ? <LavaLamp /> : null}
         {/* {component === "Particles" ? <Particles /> : null} */}
