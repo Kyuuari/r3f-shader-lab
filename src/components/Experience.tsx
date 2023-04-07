@@ -13,7 +13,7 @@ import LavaLamp from "../shaders/lavalamp/LavaLamp";
 type Props = {};
 
 const Experience = (props: Props) => {
-  const [component, setComponent] = useState("Gr");
+  const [component, setComponent] = useState("Gradient");
   const gl = useThree((state) => state.gl);
 
   // Use Leva to create a control to switch between components
