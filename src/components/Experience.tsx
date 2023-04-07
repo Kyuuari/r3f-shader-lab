@@ -7,6 +7,7 @@ import Waves from "../shaders/waves/Waves";
 import { useFrame, useThree } from "@react-three/fiber";
 import Blob from "../shaders/Blob/Blob";
 import Gradient from "../shaders/gradient/Gradient";
+import Particles from "../shaders/particles/Particles";
 
 type Props = {};
 
@@ -82,6 +83,7 @@ const Experience = (props: Props) => {
         {component === "Waves" ? <Waves /> : null}
         {component === "Blob" ? <Blob /> : null}
         {component === "Gradient" ? <Gradient /> : null}
+        {/* {component === "Particles" ? <Particles /> : null} */}
       </>
     </>
   );
