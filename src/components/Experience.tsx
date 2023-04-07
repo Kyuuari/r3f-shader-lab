@@ -53,7 +53,7 @@ const Experience = (props: Props) => {
     cameraRotation: [0, 0, 0],
     useOrbitControls: true, // Add a boolean control to toggle between modes
     resetCameraControls: button(() => {
-      camera.position.set(0, 0, -2);
+      camera.position.set(0, 0, 2);
       camera.rotation.set(0, 0, 0);
       set({
         cameraPosition: [0, 0, 2],
@@ -72,6 +72,22 @@ const Experience = (props: Props) => {
     if (cameraControls.useOrbitControls === false) {
       camera.position.set(...cameraControls.cameraPosition);
       camera.rotation.set(...cameraControls.cameraRotation);
+    } else {
+      if (cameraRef.current) {
+        cameraRef.current.update();
+        set({
+          cameraPosition: [
+            camera.position.x,
+            camera.position.y,
+            camera.position.z,
+          ],
+          cameraRotation: [
+            camera.rotation.x,
+            camera.rotation.y,
+            camera.rotation.z,
+          ],
+        });
+      }
     }
   });
 
