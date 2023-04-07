@@ -26,7 +26,7 @@ const Experience = (props: Props) => {
       },
     },
     enablePerf: false,
-    enableGrid: true,
+    enableGrid: false,
   });
 
   //Grid Controls
@@ -49,16 +49,16 @@ const Experience = (props: Props) => {
 
   //Camera Controls
   const [cameraControls, set] = useControls("Camera", () => ({
-    cameraPosition: [0, 0, 2],
-    cameraRotation: [0, 0, 0],
+    // cameraPosition: [0, 0, 2],
+    // cameraRotation: [0, 0, 0],
     useOrbitControls: true, // Add a boolean control to toggle between modes
     resetCameraControls: button(() => {
       camera.position.set(0, 0, 2);
       camera.rotation.set(0, 0, 0);
-      set({
-        cameraPosition: [0, 0, 2],
-        cameraRotation: [0, 0, 0],
-      });
+      // set({
+      //   cameraPosition: [0, 0, 2],
+      //   cameraRotation: [0, 0, 0],
+      // });
     }),
   }));
 
@@ -69,26 +69,27 @@ const Experience = (props: Props) => {
 
   // Update camera position and rotation
   useFrame(() => {
-    if (cameraControls.useOrbitControls === false) {
-      camera.position.set(...cameraControls.cameraPosition);
-      camera.rotation.set(...cameraControls.cameraRotation);
-    } else {
-      if (cameraRef.current) {
-        cameraRef.current.update();
-        set({
-          cameraPosition: [
-            camera.position.x,
-            camera.position.y,
-            camera.position.z,
-          ],
-          cameraRotation: [
-            camera.rotation.x,
-            camera.rotation.y,
-            camera.rotation.z,
-          ],
-        });
-      }
-    }
+    // if (cameraControls.useOrbitControls === false) {
+    //   camera.position.set(...cameraControls.cameraPosition);
+    //   camera.rotation.set(...cameraControls.cameraRotation);
+    // }
+    // else {
+    //   if (cameraRef.current) {
+    //     // cameraRef.current.update();
+    //     set({
+    //       cameraPosition: [
+    //         camera.position.x,
+    //         camera.position.y,
+    //         camera.position.z,
+    //       ],
+    //       cameraRotation: [
+    //         camera.rotation.x,
+    //         camera.rotation.y,
+    //         camera.rotation.z,
+    //       ],
+    //     });
+    //   }
+    // }
   });
 
   return (
@@ -98,10 +99,7 @@ const Experience = (props: Props) => {
         <OrbitControls ref={cameraRef} />
       ) : (
         <group>
-          <perspectiveCamera
-            position={cameraControls.cameraPosition}
-            rotation={cameraControls.cameraRotation}
-          />
+          <perspectiveCamera ref={cameraRef} />
         </group>
       )}
 
