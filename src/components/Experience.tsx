@@ -1,13 +1,14 @@
 import { Grid, OrbitControls } from "@react-three/drei";
 import { useControls, button, folder } from "leva";
 import { Perf } from "r3f-perf";
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import Portal from "../shaders/portal/Portal";
 import Waves from "../shaders/waves/Waves";
 import { useFrame, useThree } from "@react-three/fiber";
-import Blob from "../shaders/Blob/Blob";
+import Blob from "../shaders/blob/Blob";
 import Gradient from "../shaders/gradient/Gradient";
 import Particles from "../shaders/particles/Particles";
+import LavaLamp from "../shaders/lavalamp/LavaLamp";
 
 type Props = {};
 
@@ -19,7 +20,7 @@ const Experience = (props: Props) => {
   const generalControls = useControls("General", {
     component: {
       value: component,
-      options: ["Portal", "Waves", "Blob", "Gradient"],
+      options: ["Portal", "Waves", "Blob", "Gradient", "LavaLamp"],
       onChange: (value) => {
         setComponent(value);
       },
@@ -47,13 +48,24 @@ const Experience = (props: Props) => {
   });
 
   //Camera Controls
-  const cameraControls = useControls("Camera", {
+  const [cameraControls, set] = useControls("Camera", () => ({
     cameraPosition: [0, 0, 2],
     cameraRotation: [0, 0, 0],
     useOrbitControls: true, // Add a boolean control to toggle between modes
-  });
+    resetCameraControls: button(() => {
+      camera.position.set(0, 0, -2);
+      camera.rotation.set(0, 0, 0);
+      set({
+        cameraPosition: [0, 0, 2],
+        cameraRotation: [0, 0, 0],
+      });
+    }),
+  }));
 
   const { camera } = useThree();
+
+  // Create a ref for the camera position and rotation
+  const cameraRef = useRef<any>();
 
   // Update camera position and rotation
   useFrame(() => {
@@ -67,7 +79,7 @@ const Experience = (props: Props) => {
     <>
       {generalControls.enablePerf && <Perf position={"top-left"} />}
       {cameraControls.useOrbitControls ? (
-        <OrbitControls />
+        <OrbitControls ref={cameraRef} />
       ) : (
         <group>
           <perspectiveCamera
@@ -83,6 +95,7 @@ const Experience = (props: Props) => {
         {component === "Waves" ? <Waves /> : null}
         {component === "Blob" ? <Blob /> : null}
         {component === "Gradient" ? <Gradient /> : null}
+        {component === "LavaLamp" ? <LavaLamp /> : null}
         {/* {component === "Particles" ? <Particles /> : null} */}
       </>
     </>
